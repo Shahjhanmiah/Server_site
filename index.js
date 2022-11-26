@@ -1,7 +1,7 @@
 const express =require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken')
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config()
 const port = process.env.PORT||5000
  
@@ -18,6 +18,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@clu
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 const homeCollection = client.db('productdb').collection('homes')
 const productCollection = client.db('productdb').collection('products')
+const bookCollection = client.db('productdb').collection('book')
 
 
 
@@ -36,11 +37,18 @@ const productCollection = client.db('productdb').collection('products')
             const result = await productCollection.insertOne(products)
             res.send(result);
         })
+        // booking product 
+        app.post('/book', async(req,res)=>{
+            const book = req.body
+            const result = await bookCollection.insertOne(book)
+            res.send(result);
+        })
+       
         // product findeone 
-        app.get('/products/:id', async (req, res) => {
+        app.get('/homes/:id', async (req, res) => {
             const id = req.params.id;
-            const query = { _id: ObjectId(id) };
-            const products = await productCollection.findOne(query);
+            const query = {_id:ObjectId(id) };
+            const products = await homeCollection.findOne(query);
             res.send(products);
         })
 
