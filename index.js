@@ -105,7 +105,7 @@ function verifyJWT(req, res, next) {
             res.send(product);
         })
        
-
+         // homes delete buttio click 
         app.delete('/homes/:id', async (req, res) => {
             const id = req.params.id;
             const filter = { _id:ObjectId(id) };
