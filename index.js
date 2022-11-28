@@ -180,7 +180,7 @@ function verifyJWT(req, res, next) {
             const result = await userCollection.updateOne(filter, updatedDoc, options);
             res.send(result);
         });
-        //  
+        //  app put verifay email 
         app.put('/users/verifay', verifyJWT, async (req, res) => {
             const id = req.params.id;
             const filter = { _id: ObjectId(id) }
