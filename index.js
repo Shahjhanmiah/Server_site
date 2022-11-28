@@ -41,23 +41,7 @@ function verifyJWT(req, res, next) {
 }
  async function run (){
     try{
-        // app.put('/user/:email',async(req,res)=>{
-        //     const email = req.params.email
-        //     const user = req.body;
-        //     const filter = { email:email } 
-        //     const options = {upsert:true}
-        //     const UpdateDoc = {
-        //       $set:user
-        //     }
-        //     const result = await userCollection.UpdateDoc(filter,UpdateDoc,options)
-        //     console.log(result);
-      
-        //     const token = jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{
-        //       expiresIn:'1d'
-        //     })
-        //     res.send({result,token})
-        //   })
-          // app get er data click data 
+     
         app.get('/homes',async(req,res)=>{
             const query = {} ;
             const result = await homeCollection.find(query).toArray()
