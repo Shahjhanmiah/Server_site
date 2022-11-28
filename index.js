@@ -62,7 +62,7 @@ function verifyJWT(req, res, next) {
         
         })
         // booking product 
-        app.post('/book',verifyJWT,async(req,res)=>{
+        app.post('/book',async(req,res)=>{
             const book = req.body
             const result = await bookCollection.insertOne(book)
             res.send(result);
@@ -138,7 +138,7 @@ function verifyJWT(req, res, next) {
             const query = { email: email };
             const user = await userCollection.findOne(query);
             if (user) {
-                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET)
+                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '7d' })
                 return res.send({ accessToken: token });
             }
             res.status(403).send({ accessToken: '' })
