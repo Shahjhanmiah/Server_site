@@ -57,7 +57,7 @@ function verifyJWT(req, res, next) {
         //     })
         //     res.send({result,token})
         //   })
-  
+          // app get er data click data 
         app.get('/homes',async(req,res)=>{
             const query = {} ;
             const result = await homeCollection.find(query).toArray()
